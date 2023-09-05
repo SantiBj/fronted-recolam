@@ -1,16 +1,27 @@
 import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
-import { dataCreateTrip } from "../context/CreateTrip"
+import { dataCreateTrip } from "../../context/CreateTrip"
 import moment from "moment"
-import { URL_API } from "../config"
+import { URL_API } from "../../config"
 
 
 export function ScheduleDay() {
-    const { addValueToKey, dataTrip } = useContext(dataCreateTrip)
+    const { addValueToKey, dataTrip,resetDataSelected } = useContext(dataCreateTrip)
+    const [valueInputs, setValueInputs] = useState({
+        scheduleDay: dataTrip.scheduleDay,
+        weightAvg: dataTrip.weightAvg
+    })
     const [errors, setErrors] = useState({
         scheduleDay: null,
         weightAvg: null
     })
+
+    function addValueInputs(key, value) {
+        setValueInputs({
+            ...valueInputs,
+            [key]: value
+        })
+    }
 
     function addError(name, value) {
         setErrors({
@@ -26,22 +37,37 @@ export function ScheduleDay() {
             const dateClient = moment(value).format('YYYY-MM-DD')
             const today = moment().format('YYYY-MM-DD')
             if (value.trim() == "") {
+                if (dataTrip.scheduleDay !== "") {
+                    addValueToKey(nameInput, "")
+                }
                 addError(nameInput, "la fecha es requeridad")
             } else if (dateClient >= today) {
                 addError(nameInput, null)
+                addValueToKey(nameInput, value)
+                resetDataSelected(value)
             } else {
+                if (dataTrip.scheduleDay !== "") {
+                    addValueToKey(nameInput, "")
+                }
                 addError(nameInput, "La fecha debe ser mayor o igual a hoy")
             }
-            addValueToKey(nameInput, value)
+            addValueInputs(nameInput, value)
         } else if (nameInput == "weightAvg") {
             if (value.trim() === "") {
+                if (dataTrip.weightAvg !== "") {
+                    addValueToKey(nameInput, "")
+                }
                 addError(nameInput, "El campo es requerido")
             } else if (parseInt(value) > 0) {
                 addError(nameInput, null)
+                addValueToKey(nameInput, value)
             } else {
+                if (dataTrip.weightAvg !== "") {
+                    addValueToKey(nameInput, "")
+                }
                 addError(nameInput, "La capacidad debe ser mayor de 0 kg")
             }
-            addValueToKey(nameInput, parseFloat(value))
+            addValueInputs(nameInput, parseFloat(value))
         }
     }
 
@@ -68,7 +94,6 @@ export function ScheduleDay() {
                 console.log(error.message)
             }
         }
-
     }
 
 
@@ -78,19 +103,19 @@ export function ScheduleDay() {
     return (
         <div>
             <div>
-                <input className="border-2 border-black" type="date" onBlur={() => consult(dataTrip.scheduleDay, errors)} onChange={handlerChange} name="scheduleDay" value={dataTrip.scheduleDay} required />
+                <input className="border-2 border-black" type="date" onBlur={() => consult(dataTrip.scheduleDay, errors)} onChange={handlerChange} name="scheduleDay" value={valueInputs.scheduleDay} required />
                 {
                     errors.scheduleDay !== null && <div>{errors.scheduleDay}</div>
                 }
             </div>
             <div>
-                <input className="border-2 border-black" type="number" onChange={handlerChange} name="weightAvg" value={dataTrip.weightAvg} required />
+                <input className="border-2 border-black" type="number" onChange={handlerChange} name="weightAvg" value={valueInputs.weightAvg} required />
                 {
                     errors.weightAvg !== null && <div>{errors.weightAvg}</div>
                 }
             </div>
 
-            <Link to={""} className={`border-2 border-blue-500 bg-blue-400 ${errors.scheduleDay !== null || errors.weightAvg !== null || dataTrip.scheduleDay == "" || dataTrip.weightAvg == "" ? " opacity-60 pointer-events-none " : " opacity-100  pointer-events-auto "}`}>
+            <Link to={"/create-trip/customer"} className={`border-2 border-blue-500 bg-blue-400 ${dataTrip.scheduleDay == "" || dataTrip.weightAvg == "" ? " opacity-60 pointer-events-none " : " opacity-100  pointer-events-auto "}`}>
                 continuar
             </Link>
         </div>
