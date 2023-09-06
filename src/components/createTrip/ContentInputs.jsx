@@ -21,8 +21,8 @@ export function ContentInputs({ addValueToKey, resetDataSelected, dataTrip }) {
     );
   }
 
-  async function consult(date, errors) {
-    consultAvailableDate(addError, errors, date, addValueToKey);
+  async function consult() {
+    consultAvailableDate(addError, errorsInput, dataTrip.scheduleDay, addValueToKey);
   }
 
   return (
@@ -32,17 +32,17 @@ export function ContentInputs({ addValueToKey, resetDataSelected, dataTrip }) {
         placeholder={"Fecha del viaje"}
         onChange={handlerChange}
         name={"scheduleDay"}
-        value={inputs?.scheduleDay}
-        error={errorsInput?.scheduleDay}
-        onBlur={() => consult(dataTrip?.scheduleDay, errorsInput)}
+        value={inputs.scheduleDay}
+        error={errorsInput.scheduleDay}
+        onBlur={consult}
       />
       <CustomInput
         type={"number"}
         placeholder={"Peso Estimado Kg :"}
         onChange={handlerChange}
-        error={errorsInput?.weightAvg}
+        error={errorsInput.weightAvg}
         name={"weightAvg"}
-        value={inputs?.weightAvg}
+        value={inputs.weightAvg}
         onBlur={() => {}}
       />
     </div>

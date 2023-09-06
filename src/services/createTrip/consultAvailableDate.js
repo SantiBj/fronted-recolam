@@ -1,13 +1,13 @@
 import { URL_API } from "../../config"
 
 export async function consultAvailableDate(addError,errors,date,addValueToKey){
-    if (errors?.scheduleDay == null && date !== "") {
+    if (errors.scheduleDay == null && date !== "") {
         try {
             const response = await fetch(URL_API + "trip-available-date/" + date, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    Authorization: "Token 137b997563e98f91956a9779d5a15ea4f852a8f1",
+                    Authorization: "Token 50687ac9c8c5edcd86131b8454a531fcfef8e465",
                 }
             })
             if (!response.ok) {
