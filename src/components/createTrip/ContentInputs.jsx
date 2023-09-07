@@ -21,10 +21,6 @@ export function ContentInputs({ addValueToKey, resetDataSelected, dataTrip }) {
     );
   }
 
-  async function consult() {
-    consultAvailableDate(addError, errorsInput, dataTrip.scheduleDay, addValueToKey);
-  }
-
   return (
     <div className="flex flex-col gap-2">
       <CustomInput
@@ -34,7 +30,7 @@ export function ContentInputs({ addValueToKey, resetDataSelected, dataTrip }) {
         name={"scheduleDay"}
         value={inputs.scheduleDay}
         error={errorsInput.scheduleDay}
-        onBlur={consult}
+        onBlur={() => {}}
       />
     </div>
   );

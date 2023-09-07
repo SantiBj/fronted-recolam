@@ -43,10 +43,6 @@ export function ContentCardsConf({ dataTrip, addValueToKey }) {
         to={"/create-trip/scheduleDay"}
       />
       <CardConfirmation
-        content={`Peso estimado en Kg ${dataTrip.weightAvg}`}
-        to={"/create-trip/scheduleDay"}
-      />
-      <CardConfirmation
         content={`Cliente ${dataTrip.user}`}
         to={"/create-trip/customer"}
       />
