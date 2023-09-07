@@ -24,4 +24,4 @@ export async function consultAvailableDate(addError,errors,date,addValueToKey){
             console.log(error.message)
         }
     }
-}
+}       

@@ -6,7 +6,6 @@ export const dataCreateTrip = createContext();
 
 const initalData = {
   scheduleDay: "",
-  weightAvg: "",
   user: "",
   truck: "",
   address: "",

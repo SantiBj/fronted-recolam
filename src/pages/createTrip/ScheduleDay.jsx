@@ -17,7 +17,7 @@ export function ScheduleDay() {
       <Link
         to={"/create-trip/customer"}
         className={`border-2 border-blue-500 bg-blue-400 ${
-          dataTrip.scheduleDay == "" || dataTrip.weightAvg == ""
+          dataTrip.scheduleDay == ""
             ? " opacity-60 pointer-events-none "
             : " opacity-100  pointer-events-auto "
         }`}

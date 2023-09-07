@@ -36,15 +36,6 @@ export function ContentInputs({ addValueToKey, resetDataSelected, dataTrip }) {
         error={errorsInput.scheduleDay}
         onBlur={consult}
       />
-      <CustomInput
-        type={"number"}
-        placeholder={"Peso Estimado Kg :"}
-        onChange={handlerChange}
-        error={errorsInput.weightAvg}
-        name={"weightAvg"}
-        value={inputs.weightAvg}
-        onBlur={() => {}}
-      />
     </div>
   );
 }

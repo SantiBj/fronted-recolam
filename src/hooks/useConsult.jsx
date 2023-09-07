@@ -15,7 +15,6 @@ export function useConsult(url, method = "GET", body = null) {
     },
   };
 
-
   async function fecthingData() {
     try {
       setLoading(true);
