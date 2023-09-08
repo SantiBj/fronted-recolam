@@ -6,6 +6,7 @@ import './tailwind.css'
 import { Customer } from './pages/createTrip/Customer'
 import { Truck } from './pages/createTrip/Truck'
 import { Confirmation } from './pages/createTrip/Confirmation'
+import { ListTrucks } from './pages/assignTruck/ListTrucks'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <nav style={{ "display": 'flex', "flexDirection": "row", "justifyContent": "space-between" }}>
             <Link to={"/"}>Inicio</Link>
             <Link to={"/create-trip/scheduleDay"}>Crear Viaje</Link>
+            <Link to={"/assign-truck/list"}>Asignar Camion</Link>
           </nav>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -22,6 +24,7 @@ function App() {
             <Route path='/create-trip/customer' element={<Customer />} />
             <Route path='/create-trip/truck' element={<Truck/>}/>
             <Route path='/create-trip/confirmation' element={<Confirmation/>}/>
+            <Route path='/assign-truck/list' element={<ListTrucks/>}/>
           </Routes>
         </CreateTrip>
       </HashRouter>

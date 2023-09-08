@@ -22,6 +22,7 @@ export function Customer() {
 
   return (
     <div className="flex flex-col gap-[20px]">
+      <h2>Lista de clientes con menos de 3 viajes en {dataTrip.scheduleDay}</h2>
       <ContentCardsCust addValueToKey={addValueToKey} dataTrip={dataTrip} />
       <Link
         to={"/create-trip/truck"}

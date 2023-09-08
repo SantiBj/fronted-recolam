@@ -1,15 +1,17 @@
 import { CardTruck } from "./CardTruck";
 import { useConsult } from "../../hooks/useConsult";
 import { useEffect } from "react";
+import { usePaginate } from "../../hooks/share/usePaginate";
+import { Pagination } from "../share/Pagination";
 
 export function ContentCardsTruck({ dataTrip, addValueToKey }) {
-  const { dataConsult, errorsConsult, loading, fecthingData } = useConsult(
-    `trucks-available-date?date=${dataTrip.scheduleDay}`
-  );
+  const { page, nextPage, prevPage } = usePaginate();
+  const url = `trucks-available-date/${dataTrip.scheduleDay}?page=${page}`;
+  const { dataConsult, errorsConsult, loading, fecthingData } = useConsult(url);
 
   useEffect(() => {
     fecthingData();
-  }, []);
+  }, [page]);
 
   function addTruck(e) {
     const value = e.target.value;
@@ -22,9 +24,20 @@ export function ContentCardsTruck({ dataTrip, addValueToKey }) {
   }
   return (
     <div>
-      {dataConsult.map((truck) => (
-        <CardTruck key={truck.placa} onclick={addTruck} truck={truck} dataTrip={dataTrip} />
+      {dataConsult.results.map((truck) => (
+        <CardTruck
+          key={truck.placa}
+          onclick={addTruck}
+          truck={truck}
+          dataTrip={dataTrip}
+        />
       ))}
+      <Pagination
+        dataConsult={dataConsult}
+        page={page}
+        nextPage={nextPage}
+        prevPage={prevPage}
+      />
     </div>
   );
 }

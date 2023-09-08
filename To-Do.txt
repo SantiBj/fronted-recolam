@@ -2,9 +2,9 @@
 - mostrar aviso de cuantos viajes tiene un cliente en una fecha determinada ✅
 - no permitir crear un viaje los domingos ✅
 - no permitir crear un viaje por ejemplo hoy si ya es mas de medio dia ✅
-- paginar la lista de clientes 
-- paginar la lista de camiones disponibles
-- un cliente no pueda tener mas de 2 viajes en un mismo dia
+- paginar la lista de clientes ✅
+- paginar la lista de camiones disponibles ✅
+- un cliente no pueda tener mas de 2 viajes en un mismo dia ✅
 - en un sabado osea dia 6 la capacidad de viajes sea de 10 ✅
 - usar los errores del backend para mostrarlos en el frontend 
 
