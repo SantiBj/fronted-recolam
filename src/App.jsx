@@ -6,7 +6,9 @@ import './tailwind.css'
 import { Customer } from './pages/createTrip/Customer'
 import { Truck } from './pages/createTrip/Truck'
 import { Confirmation } from './pages/createTrip/Confirmation'
-import { ListTrucks } from './pages/assignTruck/ListTrucks'
+import { ListTripsWithoutTruck } from './pages/assignTruck/ListTripsWithoutTruck'
+import { TruckAvailable } from './pages/assignTruck/TruckAvailable'
+import { TripsWithoutInit } from './pages/TripsWithoutInit'
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
             <Link to={"/"}>Inicio</Link>
             <Link to={"/create-trip/scheduleDay"}>Crear Viaje</Link>
             <Link to={"/assign-truck/list"}>Asignar Camion</Link>
+            <Link to={'/trips-without-init/'}>Iniciar viaje</Link>
           </nav>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -24,7 +27,9 @@ function App() {
             <Route path='/create-trip/customer' element={<Customer />} />
             <Route path='/create-trip/truck' element={<Truck/>}/>
             <Route path='/create-trip/confirmation' element={<Confirmation/>}/>
-            <Route path='/assign-truck/list' element={<ListTrucks/>}/>
+            <Route path='/assign-truck/list' element={<ListTripsWithoutTruck/>}/>
+            <Route path='/trip/assign-truck/:trip/:date' element={<TruckAvailable/>} />
+            <Route path='/trips-without-init/' element={<TripsWithoutInit/>} />
           </Routes>
         </CreateTrip>
       </HashRouter>

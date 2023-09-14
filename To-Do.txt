@@ -8,18 +8,26 @@
 - en un sabado osea dia 6 la capacidad de viajes sea de 10 ✅
 - usar los errores del backend para mostrarlos en el frontend 
 
-
+///////////////
+- loading 
+- error 
+- botones de navegacion para volver a las paginas anteriores
+- boton para modales
+- añadir estado para manejar los mesajes de error haci como el codigo ✅
+//////////////
 
 //asignar camion
 
--  listado de viajes sin camion
-- paginar el listado
-- vista de cada viaje con la opcion de editar la data
-- camiones disponibles para la fecha del viaje
+-  listado de viajes sin camion ✅
+- paginar el listado ✅
+- vista para ver los camiones disponibles segun la fecha ✅
+- permitir seleccionar el camion ✅
+- añadir el camion al viaje con exito ✅
+- modal para indicar como salio la asignacion del camion ✅
 
 //viajes sin iniciar 
 
-- listado de viajes sin iniciar
+- listado de viajes sin iniciar 
 - vista con los detalles del viaje y opcion de iniciar viaje
 
 //viajes activos

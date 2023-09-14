@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useConsult } from "../../../hooks/useConsult";
+import { SelectDate } from "../../share/SelectDate";
 
-export function ListDates({state,setState}) {
+export function ListDates({ state, setState }) {
   const {
     dataConsult,
     errorsConsult,
@@ -14,15 +15,15 @@ export function ListDates({state,setState}) {
     fecthingData();
   }, []);
 
-  function handleChange(e){
-    setState(null,e.target.value)
+  function handleChange(e) {
+    setState(null, e.target.value);
   }
 
   return (
-    <select onChange={handleChange} value={state} name="date">
-      {dataConsult?.dates.map((date) => (
-        <option key={date} value={date}>{date}</option>
-      ))}
-    </select>
+    <>
+      {dataConsult !== null && (
+        <SelectDate dates={dates} handleChange={handleChange} state={state} />
+      )}
+    </>
   );
 }

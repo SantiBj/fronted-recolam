@@ -1,5 +1,5 @@
-import { CardTruck } from "./CardTruck";
 import { useConsult } from "../../hooks/useConsult";
+import { CardTruck } from '../share/CardTruck'
 import { useEffect } from "react";
 import { usePaginate } from "../../hooks/share/usePaginate";
 import { Pagination } from "../share/Pagination";

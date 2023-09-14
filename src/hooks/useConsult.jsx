@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { URL_API } from "../config";
+import { translateM } from "../services/createTrip/translate";
 
 export function useConsult(url, method = "GET", body = null) {
   const [dataConsult, setDataConsult] = useState(null);
   const [errorsConsult, setErrorsConsult] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(null);
 
   const headersConsult = {
@@ -20,14 +22,16 @@ export function useConsult(url, method = "GET", body = null) {
       setLoading(true);
       const response = await fetch(URL_API + url, headersConsult);
       if (!response.ok) {
-        throw new Error(response.status);
+        const message = await response.json();
+        throw { status: response.status, message: message.message };
       }
       const data = await response.json();
       setDataConsult(data);
       setErrorsConsult(200);
     } catch (error) {
-      setErrorsConsult(error.message);
-      console.log(error)
+      const message = await translateM(error.message)
+      setErrorMessage(message);
+      setErrorsConsult(error.status);
     } finally {
       setLoading(false);
     }
@@ -37,6 +41,8 @@ export function useConsult(url, method = "GET", body = null) {
     dataConsult,
     errorsConsult,
     setErrorsConsult,
+    errorMessage,
+    setErrorMessage,
     loading,
     fecthingData,
   };
