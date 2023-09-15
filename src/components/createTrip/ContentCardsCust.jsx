@@ -1,13 +1,16 @@
 import { CardCustomer } from "./CardCustomer";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useConsult } from "../../hooks/useConsult";
 import { usePaginate } from "../../hooks/share/usePaginate";
 import { Pagination } from "../share/Pagination";
+import { Loading } from "../share/Loading";
+import { Errors } from "../share/Errors";
 
 export function ContentCardsCust({ addValueToKey, dataTrip }) {
   const { page, nextPage, prevPage } = usePaginate();
   const url = `customers/${dataTrip.scheduleDay}?page=${page}`;
-  const { dataConsult, errorsConsult, loading, fecthingData } = useConsult(url);
+  const { dataConsult, errorsConsult, errorMessage, loading, fecthingData } =
+    useConsult(url);
 
   useEffect(() => {
     fecthingData();
@@ -20,8 +23,12 @@ export function ContentCardsCust({ addValueToKey, dataTrip }) {
   }
 
   if (loading || loading == null) {
-    return <h1>Loading ...</h1>;
+    return <Loading />;
   }
+  if (errorsConsult !== null && errorsConsult !== 200) {
+    return <Errors message={errorMessage} />;
+  }
+
 
   return (
     <>

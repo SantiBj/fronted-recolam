@@ -7,6 +7,7 @@ export function ContentMCreate({
   successCreateTrip,
   errorCreateTrip,
   loadingCreate,
+  errorMessage,
 }) {
   return (
     <div className="flex flex-col items-center justify-between">
@@ -35,7 +36,7 @@ export function ContentMCreate({
       {(stateConsult !== 200) & (stateConsult !== null) && (
         <>
           <div>error</div>
-          <div>El viaje no pudo ser creado intente mas tarde</div>{" "}
+          <div>{errorMessage}</div>{" "}
           <div className="flex ">
             <button onClick={() => errorCreateTrip(closeModal)}>Aceptar</button>
           </div>

@@ -37,7 +37,7 @@ export function ContentM({
           </div>
         </>
       )}
-      {(stateConsult !== 200) & (stateConsult !== null) && (
+      {(stateConsult !== 200) && (stateConsult !== null) && (
         <>
           <div>error</div>
           <div>{errorMessage}</div>{" "}

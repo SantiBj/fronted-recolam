@@ -31,7 +31,7 @@ export function useConsult(url, method = "GET", body = null) {
     } catch (error) {
       const message = await translateM(error.message)
       setErrorMessage(message);
-      setErrorsConsult(error.status);
+      setErrorsConsult(parseInt(error.status));
     } finally {
       setLoading(false);
     }

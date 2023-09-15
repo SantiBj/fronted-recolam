@@ -5,6 +5,7 @@ import { CustomInput } from "./CustomInput";
 import { useEffect } from "react";
 import { useConsult } from "../../hooks/useConsult";
 import { useAddressToContext } from "../../hooks/createTrip/useAddressToContext";
+import { Loading } from "../share/Loading";
 
 export function ContentCardsConf({ dataTrip, addValueToKey }) {
   const { inputs, errorsInput, addValueInputs, addError } = useStateInput(
@@ -13,9 +14,8 @@ export function ContentCardsConf({ dataTrip, addValueToKey }) {
   );
 
   //añadiendo la direccion del usuario
-  const { dataConsult, errorsConsult, loading, fecthingData } = useConsult(
-    "customer-address/" + dataTrip.user
-  );
+  const { dataConsult, errorsConsult, errorMessage, loading, fecthingData } =
+    useConsult("customer-address/" + dataTrip.user);
   useEffect(() => {
     fecthingData();
   }, []);
@@ -33,8 +33,8 @@ export function ContentCardsConf({ dataTrip, addValueToKey }) {
     );
   }
 
-  if (loading) {
-    return <h1>loading...</h1>;
+  if (loading || loading == null) {
+    return <Loading />;
   }
   return (
     <div>

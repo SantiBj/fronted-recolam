@@ -14,6 +14,7 @@ export function Confirmation() {
     consult,
     loadingCreate,
     errorsCreate,
+    errorMessage,
     successCreateTrip,
     errorCreateTrip,
   } = useContext(dataCreateTrip);
@@ -41,6 +42,7 @@ export function Confirmation() {
             successCreateTrip={successCreateTrip}
             loadingCreate={loadingCreate}
             errorCreateTrip={errorCreateTrip}
+            errorMessage={errorMessage}
           />
         }
         isOpen={modal}

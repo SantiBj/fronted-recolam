@@ -10,11 +10,29 @@
 
 ///////////////
 - loading 
-- error 
 - botones de navegacion para volver a las paginas anteriores
 - boton para modales
 - añadir estado para manejar los mesajes de error haci como el codigo ✅
 //////////////
+
+Goals today 15 = 6✅
+errores 
+
+validacion loading = loading || loading == null
+validacion errors = if (errorsConsult !== null && errorsConsult !== 200) {
+    return <Errors message={errorMessage} />;
+}
+
+-loading al cargar las fechas y los viajes en cada fecha sin camion ✅
+- loading al cargar la lista de viajes sin iniciar ✅
+- loading al cargar los datos para crear un viaje ✅
+- lista de viajes sin camiones  ✅
+- listado de camiones disponibles para asignar ✅
+- listado de viajes sin iniciar ✅
+- iniciar viaje 
+- eliminar validaciones en los map ✅
+- añadir validacion de si loading es igual a null mostrarlo ✅
+- al crear viaje ( al cargar los clientes, al cargar los camiones, al verificar la capacidad del dia ) ✅
 
 //asignar camion
 
@@ -27,7 +45,7 @@
 
 //viajes sin iniciar 
 
-- listado de viajes sin iniciar 
+- listado de viajes sin iniciar ✅
 - vista con los detalles del viaje y opcion de iniciar viaje
 
 //viajes activos

@@ -13,16 +13,20 @@ const initalData = {
 
 export function CreateTrip({ children }) {
   const [dataTrip, setDataTrip] = useState(initalData);
-  const { errorsConsult, loading, fecthingData, setErrorsConsult } = useConsult(
-    "trip-create",
-    "POST",
-    dataTrip
-  );
+  const {
+    errorsConsult,
+    errorMessage,
+    setErrorMessage,
+    loading,
+    fecthingData,
+    setErrorsConsult,
+  } = useConsult("trip-create", "POST", dataTrip);
 
   const navigate = useNavigate();
 
   function resetCodeStateConsult() {
     setErrorsConsult(null);
+    setErrorMessage(null)
   }
 
   function resetDataTrip() {
@@ -67,7 +71,8 @@ export function CreateTrip({ children }) {
     loadingCreate: loading,
     errorsCreate: errorsConsult,
     successCreateTrip,
-    errorCreateTrip
+    errorCreateTrip,
+    errorMessage
   };
 
   return (

@@ -3,12 +3,15 @@ import { dataCreateTrip } from "../../context/CreateTrip";
 import { Link, Navigate } from "react-router-dom";
 import { ContentCardsCust } from "../../components/createTrip/ContentCardsCust";
 import { useConsult } from "../../hooks/useConsult";
+import { Errors } from "../../components/share/Errors"
+import { Loading } from "../../components/share/Loading"
 
 export function Customer() {
   const { dataTrip, addValueToKey } = useContext(dataCreateTrip);
-  const { dataConsult, loading, fecthingData } = useConsult(
+  const { dataConsult, loading, fecthingData, errorsConsult,errorMessage } = useConsult(
     `quantity-trips-user-date/${dataTrip.user}/${dataTrip.scheduleDay}`
   );
+
 
   if (dataTrip.scheduleDay == "") {
     return <Navigate to={"/create-trip/scheduleDay"} />;
@@ -20,6 +23,13 @@ export function Customer() {
     }
   }, [dataTrip]);
 
+
+  if (loading || loading == null && dataTrip.user){
+    return <Loading/>
+  }
+  if (errorsConsult !== 200 && errorsConsult !== null){
+    return <Errors message={errorMessage} />
+  }
   return (
     <div className="flex flex-col gap-[20px]">
       <h2>Lista de clientes con menos de 3 viajes en {dataTrip.scheduleDay}</h2>
@@ -35,7 +45,7 @@ export function Customer() {
         continuar
       </Link>
       <div className=" transition-all">
-        {dataTrip.user !== "" && loading == false && (
+        {dataTrip.user !== "" && dataConsult !== null && (
           <>
             <h3>
               cliente = {dataConsult.user.name} documento ={" "}

@@ -8,7 +8,9 @@ import { Truck } from './pages/createTrip/Truck'
 import { Confirmation } from './pages/createTrip/Confirmation'
 import { ListTripsWithoutTruck } from './pages/assignTruck/ListTripsWithoutTruck'
 import { TruckAvailable } from './pages/assignTruck/TruckAvailable'
-import { TripsWithoutInit } from './pages/TripsWithoutInit'
+import { TripsWithoutInit } from './pages/initTripCompany/TripsWithoutInit'
+import { DetailsTrip } from './pages/initTripCompany/DetailsTrip'
+
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
             <Route path='/assign-truck/list' element={<ListTripsWithoutTruck/>}/>
             <Route path='/trip/assign-truck/:trip/:date' element={<TruckAvailable/>} />
             <Route path='/trips-without-init/' element={<TripsWithoutInit/>} />
+            <Route path='/trip-without-details/:trip' element={<DetailsTrip/>}/>
           </Routes>
         </CreateTrip>
       </HashRouter>

@@ -13,6 +13,7 @@ export function handleChangeSchedule(e, addValueToKey, resetDataSelected, addVal
         addError(nameInput,null)
         //vaciar los otros campos si ya tenian data y se cambio la fecha
         resetDataSelected(value)
+        //consultando la disponibilidad de la fecha
         consultAvailableDate(addError,value,addValueToKey)
     }
     addValueInputs(nameInput, value)
