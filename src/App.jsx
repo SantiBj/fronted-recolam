@@ -10,7 +10,9 @@ import { ListTripsWithoutTruck } from './pages/assignTruck/ListTripsWithoutTruck
 import { TruckAvailable } from './pages/assignTruck/TruckAvailable'
 import { TripsWithoutInit } from './pages/initTripCompany/TripsWithoutInit'
 import { DetailsTrip } from './pages/initTripCompany/DetailsTrip'
-
+import { TripsActives } from './pages/tripsActives/TripsActives'
+import { DetailsTripActive } from './pages/tripsActives/DetailsTripActive'
+import { Trucks } from './pages/Trucks'
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
             <Link to={"/"}>Inicio</Link>
             <Link to={"/create-trip/scheduleDay"}>Crear Viaje</Link>
             <Link to={"/assign-truck/list"}>Asignar Camion</Link>
-            <Link to={'/trips-without-init/'}>Iniciar viaje</Link>
+            <Link to={'/trips-without-init/'}>Iniciar Viaje</Link>
+            <Link to={"/trip-actives"}>Viajes Activos</Link>
+            <Link to={"/trucks"}>Camiones</Link>
           </nav>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -33,6 +37,9 @@ function App() {
             <Route path='/trip/assign-truck/:trip/:date' element={<TruckAvailable/>} />
             <Route path='/trips-without-init/' element={<TripsWithoutInit/>} />
             <Route path='/trip-without-details/:trip' element={<DetailsTrip/>}/>
+            <Route path='/trip-actives' element={<TripsActives/>}/>
+            <Route path='/trip-active-details/:trip' element={<DetailsTripActive/>}/>
+            <Route path='/trucks' element={<Trucks/>}/>
           </Routes>
         </CreateTrip>
       </HashRouter>

@@ -6,6 +6,7 @@ import { usePaginate } from "../../hooks/share/usePaginate";
 import { Errors } from "../../components/share/Errors";
 import { Loading } from "../../components/share/Loading";
 
+
 export function TripsWithoutInit() {
   const { page, nextPage, prevPage } = usePaginate();
   const { dataConsult, errorMessage, errorsConsult, fecthingData, loading } =
@@ -29,7 +30,7 @@ export function TripsWithoutInit() {
           <CardTrips
             key={trip.id}
             trip={trip}
-            to={`/trip-without-details/${trip.id}`}
+            to="/trip-without-details/"
           />
         ))}
       </div>

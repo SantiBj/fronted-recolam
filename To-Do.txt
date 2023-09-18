@@ -46,10 +46,17 @@ validacion errors = if (errorsConsult !== null && errorsConsult !== 200) {
 //viajes sin iniciar 
 
 - listado de viajes sin iniciar ✅
-- vista con los detalles del viaje y opcion de iniciar viaje
+- vista con los detalles del viaje y opcion de iniciar viaje ✅
 
 //viajes activos
 
-- listado de viajes activos 
-- vista de cada viaje activo 
-- btn para finalizar viaje por parte de la empresa
+- listado de viajes activos ✅
+- vista de cada viaje activo ✅
+- btn para finalizar viaje por parte de la empresa ✅
+
+//camiones activos
+
+- listado de todos los camiones ✅
+- cada vez que le de click activar el camion o desactivarlo ✅
+- paginar camiones ✅
+- en las consultas tener en cuenta solo los camiones activos 
