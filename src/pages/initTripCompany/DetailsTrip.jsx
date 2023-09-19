@@ -8,6 +8,7 @@ import { useModal } from "../../hooks/useModal";
 import { ModalGeneric } from "../../components/share/ModalGeneric";
 import { ContentModal } from "../../components/tripsWithoutInitCompany/ContentModal";
 
+//TODO manejar cargas y errores de las dos consultas
 export function DetailsTrip() {
   const { trip } = useParams();
   const tripDecrypt = decrypt(trip);
@@ -15,10 +16,19 @@ export function DetailsTrip() {
   const { dataConsult, errorMessage, errorsConsult, fecthingData, loading } =
     useConsult(`trip/${tripDecrypt}`);
 
+  //validando si el camion esta en otro viaje activo
+  const {
+    dataConsult: response,
+    errorMessage: mssError,
+    errorsConsult: status,
+    fecthingData: consult,
+    loading: loadingConsult,
+  } = useConsult(`truck-is-busy/${tripDecrypt}`);
+
   useEffect(() => {
+    consult();
     fecthingData();
   }, []);
-
 
   if (loading || loading == null) {
     return <Loading />;
@@ -43,6 +53,8 @@ export function DetailsTrip() {
           className={`${
             dataConsult.initialDateCompany !== null &&
             "opacity-60 pointer-events-none"
+          } ${
+            response === true && "opacity-60 pointer-events-none"
           } border-green-500 border-[2px] p-[5px]`}
           onClick={openModal}
         >
