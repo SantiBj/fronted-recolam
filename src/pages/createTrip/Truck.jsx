@@ -14,11 +14,7 @@ export function Truck() {
       <ContentCardsTruck dataTrip={dataTrip} addValueToKey={addValueToKey} />
       <Link
         to={"/create-trip/confirmation"}
-        className={`bg-blue-500 p-[3px] ${
-          dataTrip.truck == ""
-            ? "opacity-60 pointer-events-none"
-            : "opacity-100 pointer-events-auto"
-        }`}
+        className={`bg-blue-500 p-[3px]`}
       >
         continuar
       </Link>

@@ -59,15 +59,15 @@ validacion errors = if (errorsConsult !== null && errorsConsult !== 200) {
 - listado de todos los camiones ✅
 - cada vez que le de click activar el camion o desactivarlo ✅
 - paginar camiones ✅
-- en las consultas tener en cuenta solo los camiones activos 
+- en las consultas tener en cuenta solo los camiones activos ✅
 
 
 // 
 
 - manejar errores y cargas de las dos consultas par ver si el camion de 
-un viaje esta en otro viaje que esta activo
+un viaje esta en otro viaje que esta activo ✅
 /* logica para desactivar un camion
-    - si el camion adesactivar tiene un viaje en curso no se podra desactivar
+    - si el camion desactivar tiene un viaje en curso no se podra desactivar
     hasta terminar el viaje, se mostrara el viaje
     - si el camion tiene viajes asignados informar de la existencia de 
     estos y mostrar el listado de los viajes para permitir editar el camion ovbviamente tener en 

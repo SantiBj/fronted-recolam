@@ -19,8 +19,8 @@ export function Confirmation() {
     errorCreateTrip,
   } = useContext(dataCreateTrip);
 
-  if (dataTrip.truck === "") {
-    return <Navigate to="/create-trip/truck" />;
+  if (dataTrip.user === "") {
+    return <Navigate to="/create-trip/customer" />;
   }
 
   function openModal() {

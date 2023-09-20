@@ -13,14 +13,30 @@ export function useConsult(url, method = "GET", body = null) {
     body: body !== null ? JSON.stringify(body) : null,
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      Authorization: "Token 50687ac9c8c5edcd86131b8454a531fcfef8e465",
+      Authorization: "Token 83238f10e87d3f77c37ff579e9d973148e5f6570",
     },
   };
 
-  async function fecthingData() {
+  async function fecthingData(bodyConsult = null) {
+    let headers = null;
+
+    if (bodyConsult !== null && !("target" in bodyConsult)) {
+      console.log(bodyConsult);
+      headers = {
+        method: method,
+        body: JSON.stringify(bodyConsult),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: "Token 83238f10e87d3f77c37ff579e9d973148e5f6570",
+        },
+      };
+    } else {
+      headers = headersConsult;
+    }
+
     try {
       setLoading(true);
-      const response = await fetch(URL_API + url, headersConsult);
+      const response = await fetch(URL_API + url, headers);
       if (!response.ok) {
         const message = await response.json();
         throw { status: response.status, message: message.message };
@@ -29,14 +45,13 @@ export function useConsult(url, method = "GET", body = null) {
       setDataConsult(data);
       setErrorsConsult(200);
     } catch (error) {
-      const message = await translateM(error.message)
-      console.log(error)
+      const message = await translateM(error.message);
       setErrorMessage(message);
       setErrorsConsult(parseInt(error.status));
     } finally {
       setLoading(false);
     }
-  }  
+  }
 
   return {
     dataConsult,

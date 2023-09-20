@@ -5,36 +5,38 @@ import { ModalGeneric } from "../../components/share/ModalGeneric";
 import { useModal } from "../../hooks/useModal";
 import { useConsult } from "../../hooks/useConsult";
 import { ContentM } from "../../components/assignTruck/ContentM";
+import { decrypt } from "../../services/encryptData";
 
 export function TruckAvailable() {
   //buscar el viaje para informacion de este
-  const { trip,date } = useParams();
+  const { trip, date } = useParams();
+  const tripDecrypt = decrypt(trip);
+  console.log(tripDecrypt)
   const { inputs, addValueInputs } = useStateInput({ truck: null }, null);
   const { modal, openModal, closeModal } = useModal();
   const {
-    dataConsult,
     errorsConsult,
     setErrorsConsult,
     errorMessage,
     setErrorMessage,
     loading,
     fecthingData,
-  } = useConsult(`add-truck-trip/${trip}/${inputs.truck}`,"PATCH");
+  } = useConsult(`add-truck-trip/${tripDecrypt}/${inputs.truck}`, "PATCH");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  function caseAssignSuccess(){
-    closeModal()
-    navigate("/assign-truck/list")
+  function caseAssignSuccess() {
+    closeModal();
+    navigate("/assign-truck/list");
   }
 
-  function caseAssignError(){
-    setErrorMessage(null)
-    setErrorsConsult(null)
-    closeModal()
+  function caseAssignError() {
+    setErrorMessage(null);
+    setErrorsConsult(null);
+    closeModal();
   }
 
-  const text = `¿Desea asignar el camion ${inputs.truck} al viaje ${trip}?`
+  const text = `¿Desea asignar el camion ${inputs.truck} al viaje ${tripDecrypt}?`;
 
   return (
     <>

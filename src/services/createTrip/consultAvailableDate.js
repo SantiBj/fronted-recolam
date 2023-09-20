@@ -8,7 +8,7 @@ export async function consultAvailableDate(addError, date, addValueToKey) {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
-                Authorization: "Token 50687ac9c8c5edcd86131b8454a531fcfef8e465",
+                Authorization: "Token 83238f10e87d3f77c37ff579e9d973148e5f6570",
             }
         })
         if (!response.ok) {

@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
-import { useConsult } from "../../hooks/useConsult";
 import { Loading } from "../../components/share/Loading";
 import { Errors } from "../../components/share/Errors";
-import { useEffect } from "react";
 import { decrypt } from "../../services/encryptData";
 import { useModal } from "../../hooks/useModal";
 import { ModalGeneric } from "../../components/share/ModalGeneric";
 import { ContentModal } from "../../components/tripsWithoutInitCompany/ContentModal";
+import { useConsult } from "../../hooks/useConsult";
+import { useEffect } from "react";
 
 //TODO manejar cargas y errores de las dos consultas
 export function DetailsTrip() {
   const { trip } = useParams();
   const tripDecrypt = decrypt(trip);
   const { modal, openModal, closeModal } = useModal();
+
   const { dataConsult, errorMessage, errorsConsult, fecthingData, loading } =
     useConsult(`trip/${tripDecrypt}`);
 
@@ -30,11 +31,14 @@ export function DetailsTrip() {
     fecthingData();
   }, []);
 
-  if (loading || loading == null) {
+  if (loading || loading == null || loadingConsult || loadingConsult == null) {
     return <Loading />;
   }
   if (errorsConsult !== null && errorsConsult !== 200) {
     return <Errors message={errorMessage} />;
+  }
+  if (status !== null && status !== 200) {
+    return <Errors message={mssError} />;
   }
   return (
     <article className="space-y-[10px]">

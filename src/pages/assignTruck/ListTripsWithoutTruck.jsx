@@ -34,7 +34,8 @@ export function ListTripsWithoutTruck() {
         {dataConsult?.results.map((trip) => (
           <CardTrips
             trip={trip}
-            to={`/trip/assign-truck/${trip.id}/${trip.scheduleDay}`}
+            to={`/trip/assign-truck/`}
+            assignTruck
           />
         ))}
       </div>

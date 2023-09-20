@@ -13,6 +13,7 @@ const initalData = {
 
 export function CreateTrip({ children }) {
   const [dataTrip, setDataTrip] = useState(initalData);
+
   const {
     errorsConsult,
     errorMessage,
@@ -20,13 +21,25 @@ export function CreateTrip({ children }) {
     loading,
     fecthingData,
     setErrorsConsult,
-  } = useConsult("trip-create", "POST", dataTrip);
+  } = useConsult("trip-create", "POST");
 
   const navigate = useNavigate();
 
+  function createTrip() {
+    if (dataTrip.address !== "" && dataTrip.truck == "") {
+      fecthingData({
+        scheduleDay: dataTrip.scheduleDay,
+        user: dataTrip.user,
+        address: dataTrip.address,
+      });
+    } else {
+      fecthingData(dataTrip);
+    }
+  }
+
   function resetCodeStateConsult() {
     setErrorsConsult(null);
-    setErrorMessage(null)
+    setErrorMessage(null);
   }
 
   function resetDataTrip() {
@@ -67,12 +80,12 @@ export function CreateTrip({ children }) {
     addValueToKey,
     resetDataSelected,
     dataTrip,
-    consult: fecthingData,
+    consult: createTrip,
     loadingCreate: loading,
     errorsCreate: errorsConsult,
     successCreateTrip,
     errorCreateTrip,
-    errorMessage
+    errorMessage,
   };
 
   return (

@@ -15,6 +15,7 @@ export function TripsWithoutInit() {
   useEffect(() => {
     fecthingData();
   }, [page]);
+  
 
   if (loading || loading == null) {
     return <Loading />;
