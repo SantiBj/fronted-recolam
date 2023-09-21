@@ -21,6 +21,7 @@ export function ListTripsWithoutTruck() {
     }
   }, [inputs, page]);
 
+
   if (loading || loading == null && inputs !== "") {
     return <Loading/>
   }
@@ -36,6 +37,7 @@ export function ListTripsWithoutTruck() {
             trip={trip}
             to={`/trip/assign-truck/`}
             assignTruck
+            oldTruckAssigned
           />
         ))}
       </div>

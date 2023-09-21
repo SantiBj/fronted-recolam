@@ -55,6 +55,7 @@ export function useConsult(url, method = "GET", body = null) {
 
   return {
     dataConsult,
+    setDataConsult,
     errorsConsult,
     setErrorsConsult,
     errorMessage,
