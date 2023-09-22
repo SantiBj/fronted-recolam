@@ -2,7 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useConsult } from "../../../hooks/useConsult";
 import { Loading } from "../../share/Loading";
 
-export function ContentM({ closeModal, trip, oldTruck, newTruck }) {
+export function ContentM({
+  closeModal,
+  trip,
+  tripEncrypt,
+  oldTruck,
+  newTruck,
+}) {
   const navigate = useNavigate();
 
   const {
@@ -15,7 +21,7 @@ export function ContentM({ closeModal, trip, oldTruck, newTruck }) {
   } = useConsult(`edit-truck-trip/${trip}/${newTruck}`, "PATCH");
 
   function successEditTruck() {
-    navigate("/");
+    navigate(`/trip-edit/${tripEncrypt}`);
     setErrorMessage(null);
     setErrorsConsult(null);
   }

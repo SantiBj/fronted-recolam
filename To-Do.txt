@@ -62,6 +62,8 @@ validacion errors = if (errorsConsult !== null && errorsConsult !== 200) {
 - en las consultas tener en cuenta solo los camiones activos ✅
 
 
+-- ConsultDate requiere el token del usuario
+
 // 
 
 - manejar errores y cargas de las dos consultas par ver si el camion de 

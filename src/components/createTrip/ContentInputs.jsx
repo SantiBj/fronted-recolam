@@ -2,7 +2,6 @@ import { CustomInput } from "./CustomInput";
 import { useStateInput } from "../../hooks/createTrip/useStateInput";
 import { dataInitialScheduleDay } from "../../services/createTrip/dataInitialScheduleDay";
 import { handleChangeSchedule } from "../../services/createTrip/handleChangeSchedule";
-import { consultAvailableDate } from "../../services/createTrip/consultAvailableDate";
 
 export function ContentInputs({ addValueToKey, resetDataSelected, dataTrip }) {
   const { initialErrors, initialState } = dataInitialScheduleDay(dataTrip);

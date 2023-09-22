@@ -29,7 +29,8 @@ export function useStateInput(initialState, initialErrors) {
         inputs,
         errorsInput,
         addValueInputs,
-        addError
+        addError,
+        setInputs
     }
 }
 

@@ -46,6 +46,7 @@ export function TripEditTruck() {
         content={
           <ContentM
             trip={tripDecrypt}
+            tripEncrypt={trip}
             closeModal={closeModal}
             newTruck={tripInfo.truck}
             oldTruck={truck}
