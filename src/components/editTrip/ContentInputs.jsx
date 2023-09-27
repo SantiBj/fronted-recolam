@@ -2,7 +2,7 @@ import { CustomInput } from "../createTrip/CustomInput";
 import { Link } from "react-router-dom";
 
 export function ContentInputs({
-  trickEncript,
+  idTripEncript,
   errorsInput,
   inputs,
   dataConsult,
@@ -48,10 +48,12 @@ export function ContentInputs({
         <Link
           to={
             dataConsult.truck == null
-              ? `/trip/assign-truck/${trickEncript}/${dataConsult.scheduleDay}`
-              : `/trip-edit-truck/${trickEncript}/${dataConsult.truck}`
+              ? `/trip/assign-truck/${idTripEncript}/${dataConsult.scheduleDay}`
+              : `/trip-edit-truck/${idTripEncript}/${inputs.scheduleDay}`
           }
-          className="border-black border-[1px]"
+          className={`border-black border-[1px] ${
+            errorsInput.scheduleDay !== null && "opacity-60 pointer-events-none"
+          }`}
         >
           {dataConsult.truck}
         </Link>

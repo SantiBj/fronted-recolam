@@ -66,8 +66,11 @@ function App() {
             />
             <Route path="/trucks" element={<Trucks />} />
             <Route path="/trips" element={<Trips />} />
-            <Route path="/trip-edit/:trip" element={<EditTrip />} />
-            <Route path="/trip-edit-truck/:trip/:truck" element={<TripEditTruck/>}/>
+            <Route path="/trip-edit/:idTripEncript" element={<EditTrip />} />
+            <Route
+              path="/trip-edit-truck/:idTripEncript/:newDateTrip"
+              element={<TripEditTruck />}
+            />
           </Routes>
         </CreateTrip>
       </HashRouter>

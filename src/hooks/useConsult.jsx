@@ -8,6 +8,7 @@ export function useConsult(url, method = "GET", body = null) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(null);
 
+
   const headersConsult = {
     method: method,
     body: body !== null ? JSON.stringify(body) : null,
@@ -21,7 +22,6 @@ export function useConsult(url, method = "GET", body = null) {
     let headers = null;
 
     if (bodyConsult !== null && !("target" in bodyConsult)) {
-      console.log(bodyConsult);
       headers = {
         method: method,
         body: JSON.stringify(bodyConsult),

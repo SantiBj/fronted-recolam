@@ -11,30 +11,34 @@ import { ContentM } from "../../components/editTrip/editTruck/ContentM";
 
 export function TripEditTruck() {
   const { modal, openModal, closeModal } = useModal();
-  const { trip, truck } = useParams();
-  const tripDecrypt = decrypt(trip);
+  const { idTripEncript, newDateTrip } = useParams();
+  const idTripDecrypt = decrypt(idTripEncript);
 
-  const { dataConsult, errorsConsult, errorMessage, loading, fecthingData } =
-    useConsult(`trip/${tripDecrypt}`);
+  const {
+    dataConsult: oldTrip,
+    errorsConsult,
+    errorMessage,
+    loading,
+    fecthingData,
+  } = useConsult(`trip/${idTripDecrypt}`);
 
-  const [tripInfo, setTripInfo] = useState(null);
+  const [truckSelected, setTruckSelected] = useState(null);
 
   function addValue(name, value) {
-    setTripInfo({
-      ...tripInfo,
+    setTruckSelected({
       [name]: value,
     });
   }
 
   useEffect(() => {
-    if (dataConsult == null) {
+    if (oldTrip == null) {
       fecthingData();
     } else {
-      setTripInfo(dataConsult);
+      setTruckSelected({ truck: oldTrip.truck });
     }
-  }, [dataConsult]);
+  }, [oldTrip]);
 
-  if (loading || loading == null || tripInfo == null) {
+  if (loading || loading == null || truckSelected == null) {
     return <Loading />;
   }
   if (errorsConsult !== null && errorsConsult !== 200) {
@@ -45,25 +49,33 @@ export function TripEditTruck() {
       <ModalGeneric
         content={
           <ContentM
-            trip={tripDecrypt}
-            tripEncrypt={trip}
+            trip={idTripDecrypt}
+            tripEncrypt={idTripEncript}
             closeModal={closeModal}
-            newTruck={tripInfo.truck}
-            oldTruck={truck}
+            newTruck={truckSelected.truck}
+            oldTruck={oldTrip.truck}
           />
         }
         isOpen={modal}
       />
-      <div>Cliente = {tripInfo.user.name}</div>
-      <div>Fecha del viaje = {tripInfo.scheduleDay}</div>
-      <div>Camion antiguo {truck} </div>
-      {tripInfo.truck !== truck && <div>Nuevo camion = {tripInfo.truck}</div>}
+      <div>Cliente = {oldTrip.user.name}</div>
+      <div>Fecha del viaje = {newDateTrip}</div>
+      <div>Camion antiguo {oldTrip.truck} </div>
+      {truckSelected.truck !== oldTrip.truck && (
+        <div>Nuevo camion = {truckSelected.truck}</div>
+      )}
       <section>
-        <ContentCardsTruck dataTrip={tripInfo} addValueToKey={addValue} />
+        <ContentCardsTruck
+          oldTrip = {oldTrip}
+          truckSelected={truckSelected}
+          addValueToKey={addValue}
+          newDateTrip={newDateTrip}
+        />
       </section>
       <button
         className={`${
-          tripInfo.truck == truck && "opacity-60 pointer-events-none"
+          truckSelected.truck == oldTrip.truck &&
+          "opacity-60 pointer-events-none"
         } border-[2px] border-black bg-blue-500`}
         onClick={openModal}
       >

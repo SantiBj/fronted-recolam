@@ -10,11 +10,11 @@ import { ModalGeneric } from "../../components/share/ModalGeneric";
 import { useModal } from "../../hooks/useModal";
 
 export function EditTrip() {
-  const { trip } = useParams();
-  const tripDecrypt = decrypt(trip);
+  const { idTripEncript } = useParams();
+  const idTripDecrypt = decrypt(idTripEncript);
   const { modal, openModal, closeModal } = useModal();
   const { dataConsult, errorMessage, errorsConsult, fecthingData, loading } =
-    useConsult(`trip/${tripDecrypt}`);
+    useConsult(`trip/${idTripDecrypt}`);
 
   const { handleChange, inputs, errorsInput, addError } =
     useValidationInputs(dataConsult);
@@ -31,22 +31,22 @@ export function EditTrip() {
     fecthingData: consult,
     loading: load,
   } = useConsult(`truck-available/${inputs.scheduleDay}/${dataConsult?.truck}`);
+  
 
   useEffect(() => {
     if (
-      inputs.scheduleDay !== dataConsult?.scheduleDay &&
+      dataConsult !== null && inputs.scheduleDay !== dataConsult?.scheduleDay &&
       errorsInput.scheduleDay == null
     ) {
       consult();
     } else {
       if (errorsInput.truck !== null) {
+        console.log("")
         addError("truck", null);
       }
     }
 
-    if (errorsInput.scheduleDay !== null) {
-      addError("truck", null);
-    }
+    
   }, [inputs.scheduleDay]);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export function EditTrip() {
         handleChange={handleChange}
         inputs={inputs}
         errorsInput={errorsInput}
-        trickEncript={trip}
+        idTripEncript={idTripEncript}
         truckIsAvailableInDate={truckIsAvailableInDate}
       />
       <button

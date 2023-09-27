@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { consultDate } from "../../services/editTrip/ConsultDate";
 
 const initialErrors = {
-    address: null,
-    scheduleDay: null,
-    truck:null,
-  };
+  address: null,
+  scheduleDay: null,
+  truck: null,
+};
 
 export function useValidationInputs(dataConsult) {
   const { inputs, errorsInput, addValueInputs, setInputs, addError } =
@@ -45,7 +45,13 @@ export function useValidationInputs(dataConsult) {
       if (valueInput.trim() == "") {
         addError("scheduleDay", "La fecha es requeridad");
       } else {
-        consultDate(addError, valueInput);
+        if (valueInput !== dataConsult.scheduleDay) {
+          consultDate(addError, valueInput);
+        } else {
+          if (inputs.scheduleDay !== null) {
+            addError("scheduleDay", null);
+          }
+        }
       }
     }
     addValueInputs(nameInput, valueInput);
@@ -56,6 +62,6 @@ export function useValidationInputs(dataConsult) {
     inputs,
     addValueInputs,
     errorsInput,
-    addError
-  }
+    addError,
+  };
 }
