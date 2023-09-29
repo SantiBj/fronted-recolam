@@ -7,7 +7,11 @@ import { useConsult } from "../../hooks/useConsult";
 import { useAddressToContext } from "../../hooks/createTrip/useAddressToContext";
 import { Loading } from "../share/Loading";
 
-export function ContentCardsConf({ dataTrip, addValueToKey }) {
+export function ContentCardsConf({
+  urlsDataTripSelected,
+  dataTrip,
+  addValueToKey,
+}) {
   const { inputs, errorsInput, addValueInputs, addError } = useStateInput(
     dataTrip.address,
     null
@@ -40,15 +44,15 @@ export function ContentCardsConf({ dataTrip, addValueToKey }) {
     <div>
       <CardConfirmation
         content={`Dia del viaje ${dataTrip.scheduleDay}`}
-        to={"/create-trip/scheduleDay"}
+        to={urlsDataTripSelected.scheduleDay}
       />
       <CardConfirmation
         content={`Cliente ${dataTrip.user}`}
-        to={"/create-trip/customer"}
+        to={urlsDataTripSelected.customer}
       />
       <CardConfirmation
         content={`Camión ${dataTrip.truck}`}
-        to={"/create-trip/truck"}
+        to={urlsDataTripSelected.truck}
       />
       <CustomInput
         type={"text"}

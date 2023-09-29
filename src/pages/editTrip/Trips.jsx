@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useConsult } from "../../hooks/useConsult";
 import { Loading } from "../../components/share/Loading";
 import { Errors } from "../../components/share/Errors";
@@ -6,9 +6,11 @@ import { SelectDate } from "../../components/share/SelectDate";
 import { usePaginate } from "../../hooks/share/usePaginate";
 import { Pagination } from "../../components/share/Pagination";
 import { CardTrips } from "../../components/share/CardTrips";
+import { dataCreateTrip } from "../../context/CreateTrip";
 
 export function Trips() {
   const { page, nextPage, prevPage } = usePaginate();
+  const { resetDataSelected, dataTrip, resetUrls } = useContext(dataCreateTrip);
   const [dateSelected, setDateSelected] = useState("");
   const { dataConsult, errorsConsult, errorMessage, loading, fecthingData } =
     useConsult("date-trips-without-start");
@@ -22,9 +24,14 @@ export function Trips() {
     fecthingData: consultTrips,
   } = useConsult(`trips-without-start/${dateSelected}?page=${page}`);
 
-  useEffect(()=>{
+  useEffect(() => {
     fecthingData();
-  },[])
+    if (dataTrip.scheduleDay !== "") {
+      console.log("limpiando contexto");
+      resetUrls();
+      resetDataSelected();
+    }
+  }, []);
 
   useEffect(() => {
     if (dateSelected !== "") {

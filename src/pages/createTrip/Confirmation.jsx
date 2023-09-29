@@ -17,6 +17,7 @@ export function Confirmation() {
     errorMessage,
     successCreateTrip,
     errorCreateTrip,
+    urlsDataTripSelected,
   } = useContext(dataCreateTrip);
 
   if (dataTrip.user === "") {
@@ -48,7 +49,7 @@ export function Confirmation() {
         isOpen={modal}
         close={closeModal}
       />
-      <ContentCardsConf dataTrip={dataTrip} addValueToKey={addValueToKey} />
+      <ContentCardsConf dataTrip={dataTrip} urlsDataTripSelected={urlsDataTripSelected} addValueToKey={addValueToKey} />
       <button
         onClick={openModal}
         className={`bg-green-400 ${

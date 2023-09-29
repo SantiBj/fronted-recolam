@@ -4,7 +4,7 @@ import { dataCreateTrip } from "../../context/CreateTrip";
 import { ContentInputs } from "../../components/createTrip/ContentInputs";
 
 export function ScheduleDay() {
-  const { addValueToKey, dataTrip, resetDataSelected } =
+  const { addValueToKey, dataTrip, resetDataSelected, urlsDataTripSelected } =
     useContext(dataCreateTrip);
 
   return (
@@ -15,9 +15,9 @@ export function ScheduleDay() {
         resetDataSelected={resetDataSelected}
       />
       <Link
-        to={"/create-trip/customer"}
+        to={urlsDataTripSelected.customer}
         className={`border-2 border-blue-500 bg-blue-400 ${
-          dataTrip.scheduleDay == ""
+          dataTrip.scheduleDay == "" || !dataTrip.scheduleDay
             ? " opacity-60 pointer-events-none "
             : " opacity-100  pointer-events-auto "
         }`}

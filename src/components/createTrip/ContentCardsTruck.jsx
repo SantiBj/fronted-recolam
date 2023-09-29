@@ -1,18 +1,33 @@
 import { useConsult } from "../../hooks/useConsult";
 import { CardTruck } from "../share/CardTruck";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import { usePaginate } from "../../hooks/share/usePaginate";
 import { Pagination } from "../share/Pagination";
 import { Loading } from "../share/Loading";
+import { Errors } from "../share/Errors";
+import { useQueryParams } from "../../hooks/share/useQueryParams";
 
 export function ContentCardsTruck({
   truckSelected,
   addValueToKey,
   newDateTrip,
-  oldTrip,
+  addUrl,
+  isCreate = false
 }) {
-  
-  const { page, nextPage, prevPage } = usePaginate();
+
+  let initialPage;
+  const thisUrl = "/create-trip/truck";
+  const { addValueQueryParams, getValueUrl } = useQueryParams(thisUrl);
+  if (isCreate) {
+    initialPage = useMemo(() => {
+      const numberPage = parseInt(getValueUrl("page")) || 1;
+      return numberPage;
+    }, []);
+  } else {
+    initialPage = 1;
+  }
+
+  const { page, nextPage, prevPage } = usePaginate(initialPage);
   const url = `trucks-available-date/${newDateTrip}?page=${page}`;
   const {
     dataConsult: trucksAvailable,
@@ -31,8 +46,11 @@ export function ContentCardsTruck({
     const value = e.target.value;
     const name = e.target.name;
     addValueToKey(name, value);
+    if (isCreate) {
+      addValueQueryParams("page", page);
+      addUrl("truck", `${thisUrl}?page=${page}`);
+    }
   }
-
 
   if (loading || loading == null) {
     return <Loading />;

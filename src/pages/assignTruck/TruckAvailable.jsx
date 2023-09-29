@@ -11,7 +11,6 @@ export function TruckAvailable() {
   //buscar el viaje para informacion de este
   const { trip, date } = useParams();
   const tripDecrypt = decrypt(trip);
-  console.log(tripDecrypt)
   const { inputs, addValueInputs } = useStateInput({ truck: null }, null);
   const { modal, openModal, closeModal } = useModal();
   const {

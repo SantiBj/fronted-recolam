@@ -1,18 +1,25 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useRef } from "react";
 import { useConsult } from "../hooks/useConsult";
 import { useNavigate } from "react-router-dom";
 
 export const dataCreateTrip = createContext();
 
-const initalData = {
+const initialData = {
   scheduleDay: "",
   user: "",
   truck: "",
   address: "",
 };
 
+const initialUrls = {
+  scheduleDay: "/create-trip/scheduleDay",
+  customer: "/create-trip/customer",
+  truck: "/create-trip/truck",
+};
+
 export function CreateTrip({ children }) {
-  const [dataTrip, setDataTrip] = useState(initalData);
+  const [dataTrip, setDataTrip] = useState(initialData);
+  const urlsDataTripSelected = useRef(initialUrls);
 
   const {
     errorsConsult,
@@ -43,12 +50,13 @@ export function CreateTrip({ children }) {
   }
 
   function resetDataTrip() {
-    setDataTrip(initalData);
+    setDataTrip(initialData);
   }
 
   function successCreateTrip(closeModal) {
     resetCodeStateConsult();
     resetDataTrip();
+    resetUrls()
     closeModal();
     navigate("/create-trip/scheduleDay");
   }
@@ -76,6 +84,17 @@ export function CreateTrip({ children }) {
     }
   }
 
+  function addUrl(key, value) {
+    urlsDataTripSelected.current = {
+      ...urlsDataTripSelected.current,
+      [key]: value,
+    };
+  }
+
+  function resetUrls() {
+    urlsDataTripSelected.current = initialUrls;
+  }
+
   const values = {
     addValueToKey,
     resetDataSelected,
@@ -83,6 +102,9 @@ export function CreateTrip({ children }) {
     consult: createTrip,
     loadingCreate: loading,
     errorsCreate: errorsConsult,
+    urlsDataTripSelected: urlsDataTripSelected.current,
+    addUrl,
+    resetUrls,
     successCreateTrip,
     errorCreateTrip,
     errorMessage,
