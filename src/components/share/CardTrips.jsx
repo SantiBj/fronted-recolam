@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
 import { encrypt } from "../../services/encryptData";
 
-export function CardTrips({ trip, to,assignTruck,editTrip , oldTruckAssigned }) {
+export function CardTrips({
+  trip,
+  to,
+  assignTruck,
+  editTrip,
+  oldTruckAssigned,
+  queryParams,
+}) {
   let url = null;
 
-  if (editTrip){
-    url = to + encrypt(trip.id)
-  }
-  else if (assignTruck) {
+  if (editTrip) {
+    url = to + encrypt(trip.id);
+  } else if (assignTruck) {
     url = to + encrypt(trip.id) + "/" + trip.scheduleDay;
   } else {
-    url = to + encrypt(trip.id);
+    url = to + encrypt(trip.id) + queryParams;
   }
   return (
     <div className="border-[1px] border-gray-400">

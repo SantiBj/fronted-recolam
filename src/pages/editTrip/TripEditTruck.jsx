@@ -8,11 +8,13 @@ import { ContentCardsTruck } from "../../components/createTrip/ContentCardsTruck
 import { ModalGeneric } from "../../components/share/ModalGeneric";
 import { useModal } from "../../hooks/useModal";
 import { ContentM } from "../../components/editTrip/editTruck/ContentM";
+import { NavigateBetweenPages } from "../../components/share/NavigateBetweenPages";
 
 export function TripEditTruck() {
   const { modal, openModal, closeModal } = useModal();
-  const { idTripEncript, newDateTrip } = useParams();
-  const idTripDecrypt = decrypt(idTripEncript);
+  const { idTripEncrypt, newDateTrip } = useParams();
+  console.log(idTripEncrypt)
+  const idTripDecrypt = decrypt(idTripEncrypt);
 
   const {
     dataConsult: oldTrip,
@@ -50,13 +52,16 @@ export function TripEditTruck() {
         content={
           <ContentM
             trip={idTripDecrypt}
-            tripEncrypt={idTripEncript}
+            tripEncrypt={idTripEncrypt}
             closeModal={closeModal}
             newTruck={truckSelected.truck}
             oldTruck={oldTrip.truck}
           />
         }
         isOpen={modal}
+      />
+      <NavigateBetweenPages
+        prev={`/trip-edit/${idTripEncrypt}/?date=${newDateTrip}`}
       />
       <div>Cliente = {oldTrip.user.name}</div>
       <div>Fecha del viaje = {newDateTrip}</div>
@@ -66,7 +71,7 @@ export function TripEditTruck() {
       )}
       <section>
         <ContentCardsTruck
-          oldTrip = {oldTrip}
+          oldTrip={oldTrip}
           truckSelected={truckSelected}
           addValueToKey={addValue}
           newDateTrip={newDateTrip}

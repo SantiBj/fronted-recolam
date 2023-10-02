@@ -6,12 +6,18 @@ import { useModal } from "../../hooks/useModal";
 import { ModalGeneric } from "../../components/share/ModalGeneric";
 import { ContentModal } from "../../components/tripsWithoutInitCompany/ContentModal";
 import { useConsult } from "../../hooks/useConsult";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useQueryParams } from "../../hooks/share/useQueryParams";
+import { NavigateBetweenPages } from "../../components/share/NavigateBetweenPages";
 
 //TODO manejar cargas y errores de las dos consultas
 export function DetailsTrip() {
   const { trip } = useParams();
   const tripDecrypt = decrypt(trip);
+  const { getValueUrl } = useQueryParams();
+  const numberPrevPage = useMemo(() => {
+    return getValueUrl("page");
+  }, []);
   const { modal, openModal, closeModal } = useModal();
 
   const { dataConsult, errorMessage, errorsConsult, fecthingData, loading } =
@@ -45,6 +51,9 @@ export function DetailsTrip() {
       <ModalGeneric
         isOpen={modal}
         content={<ContentModal closeModal={closeModal} trip={dataConsult} />}
+      />
+      <NavigateBetweenPages
+        prev={`/trips-without-init/?page=${numberPrevPage}`}
       />
       <section>
         <div>Dia del viaje = {dataConsult.scheduleDay}</div>

@@ -8,7 +8,6 @@ export function useConsult(url, method = "GET", body = null) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(null);
 
-
   const headersConsult = {
     method: method,
     body: body !== null ? JSON.stringify(body) : null,
@@ -17,6 +16,12 @@ export function useConsult(url, method = "GET", body = null) {
       Authorization: "Token 83238f10e87d3f77c37ff579e9d973148e5f6570",
     },
   };
+
+  function resetAll() {
+    setDataConsult(null), setErrorsConsult(null);
+    setErrorMessage(null);
+    setLoading(null);
+  }
 
   async function fecthingData(bodyConsult = null) {
     let headers = null;
@@ -54,6 +59,7 @@ export function useConsult(url, method = "GET", body = null) {
   }
 
   return {
+    resetAll,
     dataConsult,
     setDataConsult,
     errorsConsult,

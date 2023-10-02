@@ -12,18 +12,26 @@ import { useQueryParams } from "../../hooks/share/useQueryParams";
 
 export function ListTripsWithoutTruck() {
   const { page, setPage, nextPage, prevPage } = usePaginate();
-  const { addValueQueryParams, getValueUrl } =
-    useQueryParams("/assign-truck/list");
+  const { getValueUrl } = useQueryParams("/assign-truck/list");
   const { resetDataSelected, dataTrip, resetUrls } = useContext(dataCreateTrip);
   const initialDate = useMemo(() => {
-    console.log(getValueUrl("date"));
+    const date = getValueUrl("date");
+    return date;
   }, []);
-  const { inputs, addValueInputs } = useStateInput("", initialDate);
-  const { dataConsult, loading, fecthingData, errorsConsult, errorMessage } =
-    useConsult(`trips-without-truck/${inputs}?page=${page}`);
+  const { inputs, addValueInputs } = useStateInput(initialDate, "");
+  const {
+    resetAll,
+    dataConsult,
+    loading,
+    fecthingData,
+    errorsConsult,
+    errorMessage,
+  } = useConsult(`trips-without-truck/${inputs}?page=${page}`);
 
   function addValueAndResetPage(key, value) {
-    addValueQueryParams("date", value);
+    if (value == "") {
+      resetAll();
+    }
     addValueInputs(key, value);
     setPage(1);
   }

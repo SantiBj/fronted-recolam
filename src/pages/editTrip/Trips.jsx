@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState,useMemo } from "react";
 import { useConsult } from "../../hooks/useConsult";
 import { Loading } from "../../components/share/Loading";
 import { Errors } from "../../components/share/Errors";
@@ -7,11 +7,16 @@ import { usePaginate } from "../../hooks/share/usePaginate";
 import { Pagination } from "../../components/share/Pagination";
 import { CardTrips } from "../../components/share/CardTrips";
 import { dataCreateTrip } from "../../context/CreateTrip";
+import { useQueryParams } from "../../hooks/share/useQueryParams";
 
 export function Trips() {
-  const { page, nextPage, prevPage } = usePaginate();
   const { resetDataSelected, dataTrip, resetUrls } = useContext(dataCreateTrip);
-  const [dateSelected, setDateSelected] = useState("");
+  const { page, nextPage, prevPage } = usePaginate();
+  const { getValueUrl } = useQueryParams("/trips");
+  const initialDate = useMemo(() => {
+    return getValueUrl("date") || "";
+  }, []);
+  const [dateSelected, setDateSelected] = useState(initialDate);
   const { dataConsult, errorsConsult, errorMessage, loading, fecthingData } =
     useConsult("date-trips-without-start");
 

@@ -56,7 +56,7 @@ function App() {
             />
             <Route path="/trips-without-init/" element={<TripsWithoutInit />} />
             <Route
-              path="/trip-without-details/:trip"
+              path="/trip-without-details/:trip/"
               element={<DetailsTrip />}
             />
             <Route path="/trip-actives" element={<TripsActives />} />
@@ -68,7 +68,7 @@ function App() {
             <Route path="/trips" element={<Trips />} />
             <Route path="/trip-edit/:idTripEncript" element={<EditTrip />} />
             <Route
-              path="/trip-edit-truck/:idTripEncript/:newDateTrip"
+              path="/trip-edit-truck/:idTripEncrypt/:newDateTrip"
               element={<TripEditTruck />}
             />
           </Routes>

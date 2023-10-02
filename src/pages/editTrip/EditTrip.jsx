@@ -3,14 +3,15 @@ import { decrypt } from "../../services/encryptData";
 import { useConsult } from "../../hooks/useConsult";
 import { Loading } from "../../components/share/Loading";
 import { Errors } from "../../components/share/Errors";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useValidationInputs } from "../../hooks/editTrip/useValidationInputs";
 import { ContentInputs } from "../../components/editTrip/ContentInputs";
 import { ModalGeneric } from "../../components/share/ModalGeneric";
 import { useModal } from "../../hooks/useModal";
 import { useTruckAvailable } from "../../hooks/editTrip/useTruckAvailable";
 import { ContentModal } from "../../components/editTrip/ContentModal";
-
+import { NavigateBetweenPages } from "../../components/share/NavigateBetweenPages";
+import { useQueryParams } from "../../hooks/share/useQueryParams";
 
 export function EditTrip() {
   const { idTripEncript } = useParams();
@@ -18,11 +19,32 @@ export function EditTrip() {
 
   const { modal, openModal, closeModal } = useModal();
 
-  const { dataConsult, errorMessage, errorsConsult, fecthingData, loading } =
-    useConsult(`trip/${idTripDecrypt}`);
+  const {
+    dataConsult: oldTrip,
+    errorMessage,
+    errorsConsult,
+    fecthingData,
+    loading,
+  } = useConsult(`trip/${idTripDecrypt}`);
 
-  const { handleChange, inputs, errorsInput, addError } =
-    useValidationInputs(dataConsult);
+  const { getValueUrl } = useQueryParams(`/trip-edit/${idTripEncript}`);
+  const dataInitial = useMemo(() => {
+    if (oldTrip !== null) {
+      const date = getValueUrl("date");
+      if (date !== "") {
+        return {
+          ...oldTrip,
+          scheduleDay: date,
+        };
+      } else {
+        return oldTrip;
+      }
+    }
+  }, [oldTrip]);
+
+  const { handleChange, inputs, errorsInput, addError } = useValidationInputs(
+    dataInitial || ""
+  );
 
   useEffect(() => {
     fecthingData();
@@ -30,7 +52,7 @@ export function EditTrip() {
 
   //consultar disponiblidad del camion en la fecha seleccionada
   const { truckIsAvailableInDate, load, msg, err } = useTruckAvailable(
-    dataConsult,
+    oldTrip,
     inputs,
     errorsInput,
     addError
@@ -56,12 +78,13 @@ export function EditTrip() {
           <ContentModal
             closeModal={closeModal}
             newTrip={inputs}
-            oldTrip={dataConsult}
+            oldTrip={oldTrip}
           />
         }
       />
+      <NavigateBetweenPages prev={`/trips/?date=${oldTrip.scheduleDay}`} />
       <ContentInputs
-        dataConsult={dataConsult}
+        dataConsult={oldTrip}
         handleChange={handleChange}
         inputs={inputs}
         errorsInput={errorsInput}
@@ -74,8 +97,8 @@ export function EditTrip() {
           (errorsInput.address !== null ||
             errorsInput.scheduleDay !== null ||
             errorsInput.truck !== null ||
-            (dataConsult.address === inputs.address &&
-              dataConsult.scheduleDay === inputs.scheduleDay)) &&
+            (oldTrip.address === inputs.address &&
+              oldTrip.scheduleDay === inputs.scheduleDay)) &&
           "opacity-60 pointer-events-none"
         } bg-red-500`}
       >
