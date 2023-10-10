@@ -18,22 +18,14 @@ import { EditTrip } from "./pages/editTrip/EditTrip";
 import { TripEditTruck } from "./pages/editTrip/TripEditTruck";
 import { CreateUser } from "./pages/createUser/CreateUser";
 import { DataUser } from "./pages/createUser/DataUser";
+import { NavBar } from "./components/share/NavBar";
 
 function App() {
   return (
     <>
       <HashRouter>
         <CreateTrip>
-          <nav className="flex justify-between mb-[70px] bg-green-500">
-            <Link to={"/"}>Inicio</Link>
-            <Link to={"/create/user"}>Crear usuario</Link>
-            <Link to={"/create-trip/scheduleDay"}>Crear Viaje</Link>
-            <Link to={"/assign-truck/list"}>Asignar Camion</Link>
-            <Link to={"/trips"}>Editar Viaje</Link>
-            <Link to={"/trips-without-init/"}>Iniciar Viaje</Link>
-            <Link to={"/trip-actives"}>Viajes Activos</Link>
-            <Link to={"/trucks"}>Camiones</Link>
-          </nav>
+          <NavBar/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create/user" element={<CreateUser />} />
