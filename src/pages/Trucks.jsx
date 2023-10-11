@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { CardTruck } from "../components/trucks/CardTruck";
 import { usePaginate } from "../hooks/share/usePaginate";
 import { Pagination } from "../components/share/Pagination";
+import { Title } from "../components/share/Title";
 
 export function Trucks() {
   const { page, nextPage, prevPage } = usePaginate();
@@ -22,12 +23,15 @@ export function Trucks() {
     return <Errors message={errorMessage} />;
   }
   return (
-    <article className="space-y-[50px] mt-[50px]">
-      <section>
-        {dataConsult.results.map((truck) => (
-          <CardTruck truck={truck} />
-        ))}
-      </section>
+    <article className="space-y-[100px]">
+      <Title text={"Camiones :"}/>
+      <article className="w-[80%] mx-auto">
+        <section className="grid justify-items-center gap-4 grid-cols-[repeat(auto-fill,minmax(250px,1fr))] w-full">
+          {dataConsult.results.map((truck) => (
+            <CardTruck truck={truck} key={truck.placa} />
+          ))}
+        </section>
+      </article>
       <Pagination
         dataConsult={dataConsult}
         page={page}

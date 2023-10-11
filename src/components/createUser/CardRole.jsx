@@ -1,16 +1,15 @@
-import { TbTruck } from "react-icons/tb";
+import { TbTruckDelivery } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { LiaUserSecretSolid, LiaUserAltSolid } from "react-icons/lia";
 
 export function CardRole({ role, to }) {
   return (
     <Link to={to}>
-      <section className="bg-gray-200 w-fit shadow-lg p-[30px] rounded-lg">
-        <div className="flex flex-col justify-center items-center">
+      <section className="bg-gray-200 w-fit shadow-lg p-[45px] rounded-lg hover:scale-105 transition-all">
+        <div className="flex flex-col justify-center items-center gap-[5px]">
           {role == "truck" && (
             <>
-              <div>
-                <TbTruck size={40} />
+              <div className="text-green-600">
+                <TbTruckDelivery size={40} />
               </div>
               <div>Camión</div>
             </>
@@ -18,7 +17,11 @@ export function CardRole({ role, to }) {
           {role == "customer" && (
             <>
               <div>
-                <LiaUserAltSolid size={40} />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/4814/4814852.png"
+                  className="w-[40px]"
+                  alt=""
+                />
               </div>
               <div>Cliente</div>
             </>
@@ -26,7 +29,11 @@ export function CardRole({ role, to }) {
           {role == "admin" && (
             <>
               <div>
-                <LiaUserSecretSolid size={40} />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2206/2206368.png"
+                  className="w-[40px]"
+                  alt=""
+                />
               </div>
               <div>Admin</div>
             </>

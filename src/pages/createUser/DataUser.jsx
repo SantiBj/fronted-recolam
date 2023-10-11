@@ -1,5 +1,8 @@
 import { useParams } from "react-router-dom";
 import { ContentInputsData } from "../../components/createUser/ContentInputsData";
+import { Title } from "../../components/share/Title"
+import { TitleMajor } from "../../components/share/TitleMajor";
+
 
 const rolesSpanish = {
   customer: "Cliente",
@@ -12,10 +15,9 @@ export function DataUser() {
   const roleSpanish = rolesSpanish[role];
 
   return (
-    <div className="">
-      <h1 className="my-[20px]">
-        Datos requeridos para crear un {roleSpanish}
-      </h1>
+    <div className="space-y-[120px]">
+      <TitleMajor  text={"Crear Usuario"} />
+      <Title to={"/create/user"} text={`Datos requeridos para crear un ${roleSpanish}`}/>
       <ContentInputsData roleSpanish={roleSpanish} role={role} />
     </div>
   );

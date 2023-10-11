@@ -37,7 +37,7 @@ export function ContentInputsData({ role,roleSpanish }) {
   }
 
   return (
-    <main className="flex flex-col gap-[20px]">
+    <main className="flex flex-col gap-[20px] bg-white p-[70px] rounded-2xl w-[70%] mx-auto md:w-[40%] max-w-[600px]">
       <ModalGeneric
         content={
           <ContentM
@@ -97,7 +97,7 @@ export function ContentInputsData({ role,roleSpanish }) {
           handleChange={handleChange}
           errors={errorsInput}
           value={inputs.id}
-          placeholder="TRJ915"
+          example="trj915"
         />
       )}
 

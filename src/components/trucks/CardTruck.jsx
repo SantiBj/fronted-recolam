@@ -30,10 +30,12 @@ export function CardTruck({ truck }) {
     <div
       onClick={handleClick}
       className={`${
-        active ? "opacity-60" : "opacity-100"
-      } p-[5px] border-[2px] border-blue-500`}
-    >
-      {truck.placa}
+        active ? "opacity-50" : "opacity-100"
+      } bg-[#E6E6E6] w-[150px] p-[15px] rounded-lg space-y-[10px] transition-all hover:scale-105`}
+    > 
+      
+      <img src="https://acortar.link/WA1HsO" className="w-[100px] mx-auto" alt="" />
+      <p className="text-center font-semibold">{truck.placa}</p>
     </div>
   );
 }

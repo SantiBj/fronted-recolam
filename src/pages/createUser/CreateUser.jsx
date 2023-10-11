@@ -1,10 +1,12 @@
-import { CardRole } from "../../components/createUser/CardRole";
 import { ContentRoles } from "../../components/createUser/ContentRoles";
+import { Title } from "../../components/share/Title";
+import { TitleMajor } from "../../components/share/TitleMajor";
 
 export function CreateUser() {
   return (
-    <div>
-      <h1>Crear usuario</h1>
+    <div className="space-y-[100px]">
+      <TitleMajor text={"Crear Usuario"} />
+      <Title text={"Selecione un rol : "} />
       <div className="flex justify-center">
         <ContentRoles />
       </div>

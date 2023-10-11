@@ -1,22 +1,24 @@
+import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+
 export function Pagination({ dataConsult, page, nextPage, prevPage }) {
   return (
-    <div>
+    <div className="w-full flex justify-between items-center">
       <button
         onClick={prevPage}
-        className={`bg-blue-500 p-[3px] ${
+        className={`bg-[#2c8d42] p-[5px] text-white aspect-square rounded-full ${
           dataConsult.previous == null && "pointer-events-none opacity-60"
         }`}
       >
-        anterior
+        <GoChevronLeft size={35} />
       </button>
-      {page}
+      <p className="text-white font-bold">{page}</p>
       <button
         onClick={nextPage}
-        className={`bg-blue-500 p-[3px] ${
+        className={`bg-[#2c8d42] p-[5px] text-white aspect-square rounded-full ${
           dataConsult.next == null && "pointer-events-none opacity-60"
         }`}
       >
-        siguiente
+        <GoChevronRight size={35} />
       </button>
     </div>
   );
