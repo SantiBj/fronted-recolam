@@ -1,5 +1,5 @@
 import { translateM } from "../createTrip/translate";
-import { URL_API } from "../../config";
+import { TOKEN, URL_API } from "../../config";
 
 export async function consultDate(addError,date) {
     try {
@@ -9,7 +9,7 @@ export async function consultDate(addError,date) {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
-                    Authorization: "Token 83238f10e87d3f77c37ff579e9d973148e5f6570",
+                    Authorization: TOKEN,
                 },
             }
         );

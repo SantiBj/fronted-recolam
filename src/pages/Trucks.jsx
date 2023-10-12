@@ -26,7 +26,7 @@ export function Trucks() {
     <article className="space-y-[100px]">
       <Title text={"Camiones :"}/>
       <article className="w-[80%] mx-auto">
-        <section className="grid justify-items-center gap-4 grid-cols-[repeat(auto-fill,minmax(250px,1fr))] w-full">
+        <section className="grid justify-items-center gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] w-full">
           {dataConsult.results.map((truck) => (
             <CardTruck truck={truck} key={truck.placa} />
           ))}

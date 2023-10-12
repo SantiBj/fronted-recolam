@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { BsArrowLeftCircle } from "react-icons/bs";
 
-export function Title({ text, to = false }) {
+export function Title({ text, to = false, color = "white", size = "lg" }) {
   return (
     <section>
       {to && (
-        <Link className="text-white text-[20]" to={to}>
+        <Link className={`text-${color} text-[18px]`} to={to}>
           <div className="flex gap-[10px]">
             <span>
               {" "}
@@ -15,7 +15,11 @@ export function Title({ text, to = false }) {
           </div>
         </Link>
       )}
-      <h2 className="text-[25px] md:text-[28px] font-semibold text-white">
+      <h2
+        className={`${size == "lg" && "text-[20px]"} ${
+          size == "md" && "text-[18px]"
+        } ${size == "sm" && "text-[16px]"} font-semibold text-${color}`}
+      >
         {text}
       </h2>
     </section>

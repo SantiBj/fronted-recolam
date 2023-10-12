@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { URL_API } from "../config";
+import { TOKEN, URL_API } from "../config";
 import { translateM } from "../services/createTrip/translate";
 
 export function useConsult(url, method = "GET", body = null) {
@@ -13,7 +13,7 @@ export function useConsult(url, method = "GET", body = null) {
     body: body !== null ? JSON.stringify(body) : null,
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      Authorization: "Token 83238f10e87d3f77c37ff579e9d973148e5f6570",
+      Authorization: TOKEN,
     },
   };
 
@@ -32,7 +32,7 @@ export function useConsult(url, method = "GET", body = null) {
         body: JSON.stringify(bodyConsult),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
-          Authorization: "Token 83238f10e87d3f77c37ff579e9d973148e5f6570",
+          Authorization: TOKEN,
         },
       };
     } else {
@@ -50,7 +50,14 @@ export function useConsult(url, method = "GET", body = null) {
       setDataConsult(data);
       setErrorsConsult(200);
     } catch (error) {
-      const message = await translateM(error.message);
+      let message;
+      if (typeof error.message == "object") {
+        const keys = Object.keys(error.message);
+        message = await translateM(error.message[keys[0]][0]);
+      } else {
+        message = await translateM(error.message);
+      }
+
       setErrorMessage(message);
       setErrorsConsult(parseInt(error.status));
     } finally {

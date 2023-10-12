@@ -40,7 +40,7 @@ export function ContentCardsCust({ addValueToKey, dataTrip, addUrl }) {
   }
   return (
     <>
-      <div>
+      <div className="grid justify-items-center gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] w-full">
         {dataConsult.results.map((customer) => (
           <CardCustomer
             key={customer.id}

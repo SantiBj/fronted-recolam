@@ -1,19 +1,21 @@
 import { useState } from "react";
 
-export function useModal(){
-    const [ modal,setModal ] = useState(false)
+export function useModal() {
+  const [modal, setModal] = useState(false);
 
-    function closeModal(){
-        setModal(false)
-    }
+  function closeModal() {
+    document.body.classList.remove("disable-modal");
+    setModal(false);
+  }
 
-    function openModal(){
-        setModal(true)
-    }
+  function openModal() {
+    document.body.classList.add("disable-modal");
+    setModal(true);
+  }
 
-    return {
-        modal,
-        openModal,
-        closeModal
-    }
+  return {
+    modal,
+    openModal,
+    closeModal,
+  };
 }

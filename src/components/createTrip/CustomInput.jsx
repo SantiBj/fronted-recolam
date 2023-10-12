@@ -8,9 +8,10 @@ export function CustomInput({
     error,
 }) {
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
             <label>{placeholder} :</label>
             <input
+                className="border-gray-300 border-[2px] p-[5px] rounded-lg placeholder:italic placeholder:text-slate-400"
                 type={type}
                 onChange={onChange}
                 onBlur={onBlur}
@@ -18,7 +19,7 @@ export function CustomInput({
                 value={value}
                 name={name}
             />
-            <div>{error !== null && error}</div>
+            <div className="text-[14px] text-red-500">{error !== null && error}</div>
         </div>
     );
 }

@@ -5,20 +5,20 @@ export function Pagination({ dataConsult, page, nextPage, prevPage }) {
     <div className="w-full flex justify-between items-center">
       <button
         onClick={prevPage}
-        className={`bg-[#2c8d42] p-[5px] text-white aspect-square rounded-full ${
+        className={`text-white ${
           dataConsult.previous == null && "pointer-events-none opacity-60"
         }`}
       >
         <GoChevronLeft size={35} />
       </button>
-      <p className="text-white font-bold">{page}</p>
+      <p className="text-black font-bold bg-white py-[8px] px-[15px]  aspect-square rounded-full">{page}</p>
       <button
         onClick={nextPage}
-        className={`bg-[#2c8d42] p-[5px] text-white aspect-square rounded-full ${
+        className={`text-white ${
           dataConsult.next == null && "pointer-events-none opacity-60"
         }`}
       >
-        <GoChevronRight size={35} />
+        <GoChevronRight size={40} />
       </button>
     </div>
   );

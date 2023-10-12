@@ -2,6 +2,8 @@ export function ModalGeneric({
   content,
   isOpen,
 }) {
+  
+
   return (
     <div
       className={`${
@@ -13,6 +15,6 @@ export function ModalGeneric({
       >
         {content}
       </div>
-    </div>
+      </div>
   );
 }

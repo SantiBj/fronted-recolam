@@ -21,7 +21,7 @@ export function ContentInputs({ addValueToKey, resetDataSelected, dataTrip }) {
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex justify-center w-[40%]">
       <CustomInput
         type={"date"}
         placeholder={"Fecha del viaje"}

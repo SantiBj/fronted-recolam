@@ -29,7 +29,7 @@ function App() {
         <CreateTrip>
           <main className="bg-[url('https://acortar.link/lpmbDO')] bg-no-repeat  bg-center bg-cover">
             <NavBar />
-            <section className="w-[85%] max-w-[1300px] mx-auto flex flex-col justify-center min-h-[90vh]">
+            <section className="mb-[100px] w-[85%] max-w-[1300px] mx-auto flex flex-col justify-center min-h-[90vh]">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/create/user" element={<CreateUser />} />

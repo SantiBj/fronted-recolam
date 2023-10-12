@@ -22,7 +22,7 @@ export function validationDataCreate(name, value, role, addError, errorsInput) {
                     );
                 }
             } else {
-                if (errorsInput[name] !== null && errorsInput[name] !== "") {
+                if (errorsInput[name] == null || errorsInput[name] !== "") {
                     addError(name, "");
                 }
             }
@@ -37,7 +37,7 @@ export function validationDataCreate(name, value, role, addError, errorsInput) {
                     "El nombre deber ser minimo de 3 caracteres, maximo de 40 y solo letras"
                 );
             } else {
-                if (errorsInput[name] !== null && errorsInput[name] !== "") {
+                if (errorsInput[name] == null || errorsInput[name] !== "") {
                     addError(name, "");
                 }
             }
@@ -47,9 +47,7 @@ export function validationDataCreate(name, value, role, addError, errorsInput) {
             if (value == "") {
                 addError(name, "La direccion es requeridad");
             } else {
-                if (errorsInput[name] == null){
-                    addError(name, "")
-                }else if (errorsInput[name] !== "") {
+                if (errorsInput[name] == null || errorsInput[name] !== "") {
                     addError(name, "");
                 }
             }
@@ -64,7 +62,7 @@ export function validationDataCreate(name, value, role, addError, errorsInput) {
                     "El campo requiere solo numero y un rango de valores de entre 7 y 10."
                 );
             } else {
-                if (errorsInput[name] !== null && errorsInput[name] !== "") {
+                if (errorsInput[name] == null || errorsInput[name] !== "") {
                     addError(name, "");
                 }
             }

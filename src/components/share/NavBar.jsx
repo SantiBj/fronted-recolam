@@ -42,7 +42,6 @@ export function NavBar() {
             <Link to={"/"}>Inicio</Link>
             <Link to={"/create/user"}>Crear usuario</Link>
             <OptionsTrips />
-            <Link to={"/assign-truck/list"}>Asignar Camion</Link>
             <Link to={"/trucks"}>Camiones</Link>
           </div>
         </div>

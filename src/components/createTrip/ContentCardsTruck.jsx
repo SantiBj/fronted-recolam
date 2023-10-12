@@ -12,9 +12,8 @@ export function ContentCardsTruck({
   addValueToKey,
   newDateTrip,
   addUrl,
-  isCreate = false
+  isCreate = false,
 }) {
-
   let initialPage;
   const thisUrl = "/create-trip/truck";
   const { addValueQueryParams, getValueUrl } = useQueryParams(thisUrl);
@@ -59,15 +58,17 @@ export function ContentCardsTruck({
     return <Errors message={errorMessage} />;
   }
   return (
-    <div>
-      {trucksAvailable.results.map((truck) => (
-        <CardTruck
-          key={truck.placa}
-          onclick={addTruck}
-          truck={truck}
-          dataTrip={truckSelected}
-        />
-      ))}
+    <div className="space-y-[40px]">
+      <div className="grid justify-items-center gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] w-full">
+        {trucksAvailable.results.map((truck) => (
+          <CardTruck
+            key={truck.placa}
+            onclick={addTruck}
+            truck={truck}
+            dataTrip={truckSelected}
+          />
+        ))}
+      </div>
       <Pagination
         dataConsult={trucksAvailable}
         page={page}
